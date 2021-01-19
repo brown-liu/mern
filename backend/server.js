@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose=require("mongoose");
 const cors=require("cors");
+const Exercise = require('./models/exercise.model');
 
 require("dotenv").config(); // configuration is in "dotenv" file
 
@@ -18,6 +19,16 @@ const connection=mongoose.connection;
 connection.once('open',()=>{
     console.log("MongoDB database connection established successfully");
 })
+
+
+const exerciseRouter=require("./routes/exercise");
+const usersRouter=require("./routes/user");
+
+
+
+app.use("/exercise",exerciseRouter);
+app.use("/users",usersRouter);
+
 
 
 
